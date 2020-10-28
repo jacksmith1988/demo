@@ -23,4 +23,10 @@ public class TestController {
 
         return "sign";
     }
+
+    @GetMapping(value = "/deposit")
+    public String deposit() {
+
+        return "deposit";
+    }
 }

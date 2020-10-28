@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<button onclick="gettronweb()">Can you get tronweb from tronlink?</button>
+<button onclick="gettronweb()">login</button>
 <script>
 
     function makeid(length) {
@@ -25,16 +25,21 @@
 
     function gettronweb(){
         if(window.tronWeb && window.tronWeb.defaultAddress.base58){
-            document.write("获取到钱包地址:",window.tronWeb.defaultAddress.base58);
+            var address = window.tronWeb.defaultAddress.base58;
+            document.write("获取到钱包地址:",address);
+            tronWeb.trx.getBalance(address).then(result => document.write("balance:",tronWeb.fromSun(result),"<br>") );
+            //window.tronWeb.defaultAddress.base58.then(result => document.write("balance:",result));
             document.write("<br>");
             var obj = setInterval(async ()=>{
-                document.write("你好:b01",makeid(8));
+                document.write("你好:b01",makeid(8),"<br>");
 
 
                 clearInterval(obj);
             }, 2000);
             document.write("登陆中....");
             document.write("<br>");
+            tronWeb.trx.getBalance(window.tronWeb.defaultAddress.base58).then(result => console.log(result))
+
         }else
         {
             document.write("请先登录tronlink钱包....");
